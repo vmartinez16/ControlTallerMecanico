@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Registro</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="logo-container">
+    <ion-icon name="clipboard-outline" size="large"></ion-icon>
+  </div>
+
+  <ion-item>
+    <ion-label position="stacked">Nombre</ion-label>
+    <ion-input [(ngModel)]="nuevoUsuario.nombre"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Correo</ion-label>
+    <ion-input type="email" [(ngModel)]="nuevoUsuario.correo"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Contraseña</ion-label>
+    <ion-input type="password" [(ngModel)]="nuevoUsuario.contrasena"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Rol</ion-label>
+    <ion-select [(ngModel)]="nuevoUsuario.rol" placeholder="Selecciona un rol">
+      <ion-select-option value="administrador">Administrador</ion-select-option>
+      <ion-select-option value="cajero">Cajero</ion-select-option>
+      <ion-select-option value="mecanico">Mecánico</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button expand="block" color="success" (click)="registrarUsuario()">Registrar</ion-button>
+</ion-content>

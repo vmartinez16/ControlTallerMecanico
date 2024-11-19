@@ -1,0 +1,25 @@
+
+
+<ion-content padding>
+  <div class="logo-container">
+    <ion-icon name="person-circle-outline" size="large"></ion-icon>
+  </div>
+
+  <ion-item>
+    <ion-label position="stacked">Correo</ion-label>
+    <ion-input type="email" [(ngModel)]="correo"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Contraseña</ion-label>
+    <ion-input type="password" [(ngModel)]="contrasena"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Recordar credenciales</ion-label>
+    <ion-checkbox [(ngModel)]="recordar"></ion-checkbox>
+  </ion-item>
+
+  <ion-button expand="block" color="success" (click)="iniciarSesion()">Iniciar Sesión</ion-button>
+  <ion-button expand="block" color="light" (click)="abrirRegistro()">¿No tienes cuenta? Regístrate</ion-button>
+</ion-content>

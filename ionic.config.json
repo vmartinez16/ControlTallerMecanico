@@ -1,0 +1,7 @@
+{
+  "name": "ControlTallerMecanico",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
