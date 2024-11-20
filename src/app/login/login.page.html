@@ -1,6 +1,7 @@
 
 
 <ion-content padding>
+  <div class="background-container">
   <div class="logo-container">
     <ion-icon name="person-circle-outline" size="large"></ion-icon>
   </div>
@@ -20,6 +21,7 @@
     <ion-checkbox [(ngModel)]="recordar"></ion-checkbox>
   </ion-item>
 
-  <ion-button expand="block" color="success" (click)="iniciarSesion()">Iniciar Sesión</ion-button>
+  <ion-button expand="block" color="primary" (click)="iniciarSesion()">Iniciar Sesión</ion-button>
   <ion-button expand="block" color="light" (click)="abrirRegistro()">¿No tienes cuenta? Regístrate</ion-button>
+</div>
 </ion-content>
