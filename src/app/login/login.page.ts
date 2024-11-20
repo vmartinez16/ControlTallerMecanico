@@ -47,7 +47,7 @@ export class LoginPage {
 
       localStorage.setItem('usuarioActivo', JSON.stringify(usuarioValido));
 
-      this.router.navigate(['/lobby']);
+      this.router.navigate(['/home']);
     } else {
       const alert = await this.alertController.create({
         header: 'Error',

@@ -1,0 +1,43 @@
+<ion-content >
+  <div class="background-container">
+    <h1 class="title">Gestión de Clientes</h1>
+    
+    <ion-searchbar 
+      placeholder="Buscar cliente" 
+      (ionChange)="searchClient($event)"
+    ></ion-searchbar>
+
+    <ion-list>
+      <ion-item-sliding *ngFor="let client of filteredClients">
+        <ion-item (click)="viewClientDetails(client)">
+          <ion-avatar slot="start">
+            <ion-icon name="person-circle-outline" class="avatar-icon"></ion-icon>
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ client.name }}</h2>
+            <p>{{ client.contact }}</p>
+            <p>{{ client.vehicles.length }} Vehículo(s)</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item-options side="end">
+          <ion-item-option color="primary" (click)="openClientModal(client)">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-item-option>
+          <ion-item-option color="danger" (click)="deleteClient(client.id)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-item-option>
+          <ion-item-option color="success" (click)="addVehicleToClient(client)">
+            <ion-icon name="car-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="openClientModal()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+</ion-content>

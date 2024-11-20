@@ -1,0 +1,32 @@
+
+
+<ion-content >
+  <div class="background-container">
+  <h1 class="title">Gestión de Inventario</h1>
+  
+  <ion-searchbar 
+    [(ngModel)]="searchTerm" 
+    placeholder="Buscar producto o número de pieza"
+    (ionInput)="searchProducts()">
+  </ion-searchbar>
+  
+  <ion-list>
+    <ion-item *ngFor="let product of filteredProducts">
+      <ion-label>
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.partNumber }} - Stock: {{ product.stock }}</p>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button color="danger" (click)="deleteProduct(product.id)">Eliminar</ion-button>
+        <ion-button (click)="editProduct(product)">Editar</ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openAddProductModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</div>
+</ion-content>

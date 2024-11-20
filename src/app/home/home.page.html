@@ -1,20 +1,28 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content >
+  <div class="background-container">
+    <h1 class="title">Taller Mecánico</h1>
+    
+    <div class="menu-grid">
+      <ion-card class="menu-card" (click)="navigateToClients()">
+        <ion-card-content>
+          <ion-icon name="people-outline" class="menu-icon"></ion-icon>
+          <h2>Clientes</h2>
+        </ion-card-content>
+      </ion-card>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+      <ion-card class="menu-card" (click)="navigateToInventory()">
+        <ion-card-content>
+          <ion-icon name="car-outline" class="menu-icon"></ion-icon>
+          <h2>Inventario</h2>
+        </ion-card-content>
+      </ion-card>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+      <ion-card class="menu-card" (click)="navigateToSettings()">
+        <ion-card-content>
+          <ion-icon name="settings-outline" class="menu-icon"></ion-icon>
+          <h2>Configuración</h2>
+        </ion-card-content>
+      </ion-card>
+    </div>
   </div>
 </ion-content>
