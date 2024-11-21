@@ -1,7 +1,7 @@
-<ion-content >
+<ion-content>
   <div class="background-container">
     <h1 class="title">Taller Mecánico</h1>
-    
+
     <div class="menu-grid">
       <ion-card class="menu-card" (click)="navigateToClients()">
         <ion-card-content>
@@ -16,11 +16,25 @@
           <h2>Inventario</h2>
         </ion-card-content>
       </ion-card>
-
+      <!--Verificar su rol y si es admin (localstorage usuarioactivo.rol) que lo deje navegar a settings, si es cajero a hacer la venta y si es mecánico órdenes de servicio (los registros de las ventas)-->
       <ion-card class="menu-card" (click)="navigateToSettings()">
         <ion-card-content>
           <ion-icon name="settings-outline" class="menu-icon"></ion-icon>
           <h2>Configuración</h2>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="menu-card" (click)="navigateToSales()">
+        <ion-card-content>
+          <ion-icon name="settings-outline" class="menu-icon"></ion-icon>
+          <h2>Registro de venta</h2>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="menu-card" (click)="navigateToReports()">
+        <ion-card-content>
+          <ion-icon name="settings-outline" class="menu-icon"></ion-icon>
+          <h2>Órdenes de servicio</h2>
         </ion-card-content>
       </ion-card>
     </div>

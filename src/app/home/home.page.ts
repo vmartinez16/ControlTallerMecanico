@@ -23,4 +23,10 @@ export class HomePage {
   navigateToSettings() {
     this.router.navigate(['/configuracion']);
   }
+  navigateToSales() {
+    this.router.navigate(['/sales']);
+  }
+  navigateToReports() {
+    this.router.navigate(['/reports']);
+  }
 }
