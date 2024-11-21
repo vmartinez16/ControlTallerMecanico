@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Registro de Ventas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Registro de Ventas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Formulario para el registro de ventas -->
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Cliente</ion-label>
+      <ion-select [(ngModel)]="selectedClient" placeholder="Selecciona un cliente">
+        <ion-select-option *ngFor="let client of clients" [value]="client">{{ client.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Productos/Servicios</ion-label>
+      <ion-select multiple [(ngModel)]="selectedItems" placeholder="Selecciona productos/servicios">
+        <ion-select-option *ngFor="let item of inventory" [value]="item">{{ item.name }} - ${{ item.price }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Descuento (%)</ion-label>
+      <ion-input type="number" [(ngModel)]="discount"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Método de Pago</ion-label>
+      <ion-select [(ngModel)]="paymentMethod" placeholder="Selecciona método de pago">
+        <ion-select-option value="efectivo">Efectivo</ion-select-option>
+        <ion-select-option value="tarjeta">Tarjeta</ion-select-option>
+        <ion-select-option value="transferencia">Transferencia</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label>Total: ${{ total | number:'1.2-2' }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" (click)="finalizarVenta()">Finalizar Venta</ion-button>
+</ion-content>

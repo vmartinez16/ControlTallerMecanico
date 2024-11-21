@@ -5,9 +5,50 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">configuracion</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list>
+    <!-- Configuración de Precios y Servicios -->
+    <ion-item (click)="abrirCRUDServicios()">
+      <ion-label>Configurar Precios y Servicios</ion-label>
+    </ion-item>
+
+    <!-- Ajustes de Impuestos y Descuentos -->
+    <ion-item (click)="ajustarImpuestosDescuentos()">
+      <ion-label>Ajustes de Impuestos y Descuentos</ion-label>
+    </ion-item>
+
+    <!-- Personalización de Nota -->
+    <ion-item (click)="personalizarNota()">
+      <ion-label>Personalizar Nota de Venta</ion-label>
+    </ion-item>
+
+    <!-- Gestión de Roles -->
+    <ion-item (click)="gestionarRoles()">
+      <ion-label>Gestión de Roles y Permisos</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Modal para el CRUD de Servicios -->
+  <ion-modal [isOpen]="mostrarCRUDServicios" (didDismiss)="cerrarModalServicios()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Servicios Frecuentes</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-item *ngFor="let servicio of servicios">
+            <ion-label>{{ servicio.nombre }}</ion-label>
+            <ion-note slot="end">${{ servicio.precio }}</ion-note>
+            <ion-button slot="end" color="danger" (click)="eliminarServicio(servicio)">Eliminar</ion-button>
+          </ion-item>
+        </ion-list>
+        <ion-item>
+          <ion-input placeholder="Nombre del Servicio" [(ngModel)]="nuevoServicio.nombre"></ion-input>
+          <ion-input type="number" placeholder="Precio" [(ngModel)]="nuevoServicio.precio"></ion-input>
+          <ion-button (click)="agregarServicio()">Agregar</ion-button>
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
