@@ -21,10 +21,16 @@ export class InventoryPage {
   // Load products from Local Storage
   loadProducts() {
     const storedProducts = localStorage.getItem('inventory');
-    this.products = storedProducts ? JSON.parse(storedProducts) : [];
+    this.products = storedProducts 
+      ? JSON.parse(storedProducts).map((product: any) => ({
+          ...product,
+          stock: Number(product.stock), // Convertir a número
+        }))
+      : [];
     this.filteredProducts = [...this.products];
     this.checkLowStockAlerts();
   }
+  
 
   // Save products to Local Storage
   saveProducts() {
@@ -77,18 +83,18 @@ export class InventoryPage {
             if (product) {
               product.name = data.name;
               product.partNumber = data.partNumber;
-              product.stock = data.stock;
+              product.stock = Number(data.stock); // Convertir a número
             } else {
               this.products.push({
                 id: Date.now(),
                 name: data.name,
                 partNumber: data.partNumber,
-                stock: data.stock,
+                stock: Number(data.stock), // Convertir a número
                 movements: [],
               });
             }
             this.saveProducts();
-          },
+          },          
         },
       ],
     });
@@ -131,13 +137,13 @@ export class InventoryPage {
       date: new Date(),
     };
     product.movements.push(movement);
-
+  
     if (type === 'Ingreso') {
-      product.stock += quantity;
+      product.stock += Number(quantity); // Asegurar que quantity es un número
     } else if (type === 'Salida') {
-      product.stock -= quantity;
+      product.stock -= Number(quantity);
     }
-
+  
     this.saveProducts();
   }
-}
+}  
