@@ -38,6 +38,14 @@ const routes: Routes = [
     path: 'reports',
     loadChildren: () => import('./reports/reports.module').then( m => m.ReportsPageModule)
   },
+  {
+    path: 'mainservices',
+    loadChildren: () => import('./mainservices/mainservices.module').then( m => m.MainservicesPageModule)
+  },
+  {
+    path: 'manageroles',
+    loadChildren: () => import('./manageroles/manageroles.module').then( m => m.ManagerolesPageModule)
+  },
 
  
 ];

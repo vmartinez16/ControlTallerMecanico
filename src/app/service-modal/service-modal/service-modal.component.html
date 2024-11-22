@@ -1,0 +1,54 @@
+<!-- service-modal.component.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ service ? 'Editar' : 'Nuevo' }} Servicio</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Cancelar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Nombre del Servicio</ion-label>
+        <ion-input formControlName="name" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Precio</ion-label>
+        <ion-input formControlName="price" type="number"></ion-input>
+      </ion-item>
+
+      <ion-list-header>
+        <ion-label>Materiales Necesarios</ion-label>
+        <ion-button size="small" (click)="addMaterial()">
+          <ion-icon name="add"></ion-icon>
+        </ion-button>
+      </ion-list-header>
+
+      <div formArrayName="materials">
+        <ion-item *ngFor="let material of materials.controls; let i=index" [formGroupName]="i">
+          <ion-select formControlName="id" placeholder="Seleccionar material">
+            <ion-select-option *ngFor="let item of inventory" [value]="item.id">
+              {{ item.name }}
+            </ion-select-option>
+          </ion-select>
+          
+          <ion-input formControlName="quantity" type="number" placeholder="Cantidad"></ion-input>
+          
+          <ion-button fill="clear" (click)="removeMaterial(i)">
+            <ion-icon name="trash" color="danger"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </div>
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" [disabled]="!serviceForm.valid">
+        {{ service ? 'Actualizar' : 'Guardar' }}
+      </ion-button>
+    </div>
+  </form>
+</ion-content>
