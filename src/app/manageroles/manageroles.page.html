@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Administrar Roles</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item-sliding *ngFor="let user of usuarios; let i = index">
+      <ion-item>
+        <ion-label>
+          <h2>{{ user.nombre }}</h2>
+          <p>{{ user.correo }}</p>
+          <p><strong>Rol:</strong> {{ user.rol }}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-options side="start">
+        <ion-item-option color="primary" (click)="editarUsuario(user, i)">
+          Editar
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="eliminarUsuario(i)">
+          Eliminar
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <!-- Modal para editar el rol -->
+  <ion-modal [isOpen]="isModalOpen" (ionModalDidDismiss)="cerrarModal()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Editar Rol</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="cerrarModal()">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+        <form (submit)="guardarCambios()">
+          <ion-list>
+            <ion-radio-group [(ngModel)]="usuarioSeleccionado.rol" name="roles">
+              <ion-list-header>
+                <ion-label>Selecciona un Rol</ion-label>
+              </ion-list-header>
+              <ion-item>
+                <ion-label>Administrador</ion-label>
+                <ion-radio slot="start" value="Administrador"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Cajero</ion-label>
+                <ion-radio slot="start" value="Cajero"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Mecánico</ion-label>
+                <ion-radio slot="start" value="Mecánico"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+          <ion-button expand="full" type="submit">Guardar Cambios</ion-button>
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
