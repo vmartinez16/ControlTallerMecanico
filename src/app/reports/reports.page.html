@@ -1,13 +1,144 @@
+// reports.page.html
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>reports</ion-title>
+    <ion-title>Reports</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">reports</ion-title>
+      <ion-title size="large">Reports</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <!-- Selector de mes -->
+  <ion-item>
+    <ion-label>Mes</ion-label>
+    <ion-select [(ngModel)]="mesSeleccionado" (ionChange)="filtrarPorMes()">
+      <ion-select-option [value]="null">Todos los meses</ion-select-option>
+      <ion-select-option *ngFor="let mes of meses; let i = index" [value]="i">
+        {{ mes }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Resumen mensual -->
+  <ion-card *ngIf="resumenMensual">
+    <ion-card-header>
+      <ion-card-title>
+        Resumen {{ mesSeleccionado !== null ? meses[mesSeleccionado] : 'General' }}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-item lines="none">
+              <ion-label>
+                <h2>Total Ventas</h2>
+                <p>{{ resumenMensual.totalVentas | currency }}</p>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item lines="none">
+              <ion-label>
+                <h2>Número de Servicios</h2>
+                <p>{{ resumenMensual.numeroServicios }}</p>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <ion-item lines="none">
+              <ion-label>
+                <h2>Promedio por Venta</h2>
+                <p>{{ resumenMensual.promedioVenta | currency }}</p>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item lines="none">
+              <ion-label>
+                <h2>Total Clientes</h2>
+                <p>{{ resumenMensual.totalClientes }}</p>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <!-- Gráfico de servicios más vendidos -->
+      <h2>Servicios más solicitados</h2>
+      <ion-list>
+        <ion-item *ngFor="let servicio of resumenMensual.serviciosPopulares">
+          <ion-label>
+            <h3>{{ servicio.nombre }}</h3>
+            <p>{{ servicio.cantidad }} servicios - {{ servicio.total | currency }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Actualizar la lista de ventas -->
+<ion-list>
+  <ion-item *ngFor="let venta of ventasFiltradas" (click)="mostrarDetalle(venta)">
+    <ion-label>
+      <h2>{{ venta?.cliente?.name || 'Cliente no disponible' }}</h2>
+      <p>{{ venta?.fecha | date:'dd/MM/yyyy' }}</p>
+      <p>Total: {{ venta?.calculos?.total | currency }}</p>
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+<!-- Actualizar el modal -->
+<ion-modal [isOpen]="mostrarModal">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Detalles de Venta</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="cerrarModal()">Cerrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <ion-list *ngIf="ventaSeleccionada">
+        <ion-item><strong>Fecha:</strong> {{ ventaSeleccionada?.fecha | date:'dd/MM/yyyy' }}</ion-item>
+        <ion-item><strong>Cliente:</strong> {{ ventaSeleccionada?.cliente?.name }}</ion-item>
+        <ion-item><strong>Vehículo:</strong> {{ ventaSeleccionada?.vehiculo?.brand }} {{ ventaSeleccionada?.vehiculo?.model }}</ion-item>
+        <ion-item>
+          <ion-label>
+            <strong>Servicios:</strong>
+            <ion-list>
+              <ion-item *ngFor="let item of ventaSeleccionada?.items">
+                {{ item?.name }} - {{ item?.price | currency }}
+                <ng-container *ngIf="item.materials && item.materials.length > 0">
+                  <p>Materiales:</p>
+                  <ul>
+                    <li *ngFor="let material of item.materials">
+                      {{ material.name }} ({{ material.quantity }})
+                    </li>
+                  </ul>
+                </ng-container>
+              </ion-item>
+            </ion-list>
+          </ion-label>
+        </ion-item>
+        <ion-item><strong>Subtotal:</strong> {{ ventaSeleccionada?.calculos?.subtotal | currency }}</ion-item>
+        <ion-item><strong>Descuento:</strong> {{ ventaSeleccionada?.descuento }}% ({{ ventaSeleccionada?.calculos?.discountAmount | currency }})</ion-item>
+        <ion-item><strong>IVA:</strong> {{ ventaSeleccionada?.calculos?.taxAmount | currency }}</ion-item>
+        <ion-item><strong>Total:</strong> {{ ventaSeleccionada?.calculos?.total | currency }}</ion-item>
+        <ion-item><strong>Método de pago:</strong> {{ ventaSeleccionada?.metodoPago }}</ion-item>
+        <ion-item *ngIf="ventaSeleccionada?.detalles">
+          <strong>Detalles:</strong> {{ ventaSeleccionada?.detalles }}
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>
 </ion-content>
