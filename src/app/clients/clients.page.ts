@@ -178,6 +178,7 @@ updateLocalStorage() {
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
+      <div class="background-container" style>
       <ion-item>
         <ion-label position="floating">Nombre</ion-label>
         <ion-input 
@@ -209,6 +210,7 @@ updateLocalStorage() {
       >
         Guardar Cliente
       </ion-button>
+      </div>
     </ion-content>
   `,
   standalone: true,
