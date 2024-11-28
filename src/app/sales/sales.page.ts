@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
+
 import jsPDF from 'jspdf';
 
 interface SaleCalculation {
@@ -48,7 +50,7 @@ export class SalesPage implements OnInit {
     total: 0
   };
 
-  constructor() {}
+  constructor(private toastController: ToastController) {}
 
   ngOnInit() {
     this.cargarDatos();
@@ -90,6 +92,18 @@ export class SalesPage implements OnInit {
       total
     };
   }
+
+  async presentToast(message: string, duration: number = 2000) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: duration, // Tiempo que estará visible en milisegundos
+      position: 'bottom', // Posición: 'top', 'middle', o 'bottom'
+      color: 'success',   // Opcional: 'primary', 'secondary', 'tertiary', etc.
+    });
+  
+    toast.present(); // Muestra el Toast
+  }
+  
 
   finalizarVenta() {
     if (!this.selectedClient || !this.selectedVehicle || this.selectedItems.length === 0 || !this.paymentMethod) {
@@ -158,11 +172,12 @@ export class SalesPage implements OnInit {
     // Registrar la venta
     this.guardarVenta();
   
-    alert('Venta registrada, inventario actualizado y ticket generado.');
+    this.presentToast('Venta registrada, inventario actualizado y ticket generado.');
   
     // Limpiar formulario
     this.limpiarFormulario();
   }
+
   
   actualizarInventario() {
     // Obtener el inventario del localStorage
