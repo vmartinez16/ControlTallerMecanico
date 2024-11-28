@@ -57,19 +57,15 @@ export class ClientsPage implements OnInit {
 
   loadClients() {
     const storedClients = localStorage.getItem('clients');
-    if (storedClients) {
-      this.clients = JSON.parse(storedClients);
-    } else {
-      this.clients = []; // Inicializar si no hay datos
-    }
-    this.filteredClients = [...this.clients];
+    this.clients = storedClients ? JSON.parse(storedClients) : [];
+    this.filteredClients = [...this.clients]; // Actualiza filteredClients
   }
 
-  searchClient(event: any) {
-    const searchTerm = event.detail.value.toLowerCase();
-    this.filteredClients = this.clients.filter(client => 
-      client.name.toLowerCase().includes(searchTerm) || 
-      client.contact.toLowerCase().includes(searchTerm)
+  searchClient() {
+    const term = this.searchTerm.toLowerCase();
+    this.filteredClients = this.clients.filter(client =>
+      client.name.toLowerCase().includes(term) || 
+      client.contact.toLowerCase().includes(term)
     );
   }
 

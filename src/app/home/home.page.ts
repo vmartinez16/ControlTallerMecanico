@@ -29,4 +29,8 @@ export class HomePage {
   navigateToReports() {
     this.router.navigate(['/reports']);
   }
+  logout() {
+    localStorage.removeItem('usuarioActivo');
+    this.router.navigate(['/login']);
+  }
 }

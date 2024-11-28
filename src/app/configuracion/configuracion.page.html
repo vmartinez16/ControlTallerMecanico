@@ -1,10 +1,14 @@
+<ion-content>
+  <div class="background-container">
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
     <ion-title>Configuración</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
   <ion-list>
     <!-- Configuración de Precios y Servicios Frecuentes -->
     <ion-item [routerLink]="['/mainservices']">
@@ -26,4 +30,5 @@
       <ion-label>Gestión de Roles y Permisos</ion-label>
     </ion-item>
   </ion-list>
+  </div>
 </ion-content>

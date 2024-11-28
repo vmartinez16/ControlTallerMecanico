@@ -1,11 +1,15 @@
 <ion-content >
   <div class="background-container">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
     <h1 class="title">Gestión de Clientes</h1>
     
     <ion-searchbar 
-      placeholder="Buscar cliente" 
-      (ionChange)="searchClient($event)"
-    ></ion-searchbar>
+  [(ngModel)]="searchTerm" 
+  placeholder="Buscar cliente o contacto"
+  (ionInput)="searchClient()">
+</ion-searchbar>
 
     <ion-list>
       <ion-item-sliding *ngFor="let client of filteredClients">

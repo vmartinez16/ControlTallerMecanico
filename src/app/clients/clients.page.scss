@@ -1,6 +1,6 @@
 .background-container {
     height: 100%;
-    background: linear-gradient(135deg, #2c3e50, #3498db);
+    background: white;
     color: white;
   }
   
@@ -8,7 +8,7 @@
     text-align: center;
     padding: 20px;
     font-size: 2rem;
-    color: white;
+    color: black;
   }
   
   ion-searchbar {
@@ -26,13 +26,13 @@
     --border-color: transparent;
     margin-bottom: 10px;
     border-radius: 10px;
-    color: white;
+    color: black;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
   
   .avatar-icon {
     font-size: 40px;
-    color: white;
+    color: black;
   }
   
   ion-item-option {
@@ -42,7 +42,6 @@
   ion-fab-button {
     --background: #3498db;
     --background-activated: #2980b9;
-    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
   }
 
   

@@ -1,6 +1,6 @@
 .background-container {
     height: 100%;
-    background: linear-gradient(135deg, #2c3e50, #3498db);
+    background: white;
     color: white;
   }
   
@@ -8,7 +8,7 @@
     text-align: center;
     padding: 20px 0;
     font-size: 1.5rem;
-    color: white;
+    color: black;
   }
   
   ion-searchbar {
@@ -26,7 +26,8 @@
     --border-color: transparent;
     margin-bottom: 10px;
     border-radius: 10px;
-    color: white;
+    color: black;
+    box-shadow: 4px 4px 6px 2px rgba(0, 0, 0, 0.1);
   }
   
   ion-fab-button {
