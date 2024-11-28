@@ -1,37 +1,48 @@
 .background-container {
-    height: 100%;
-    background: white;
-    color: white;
-  }
-  
-  .title {
-    text-align: center;
-    padding: 20px 0;
-    font-size: 1.5rem;
-    color: black;
-  }
-  
-  ion-searchbar {
-    --background: rgba(255, 255, 255, 0.2);
-    --border-radius: 10px;
-    margin-bottom: 15px;
-  }
-  
-  ion-list {
-    background: transparent;
-  }
-  
-  ion-item {
-    --background: rgba(255, 255, 255, 0.2);
-    --border-color: transparent;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    color: black;
-    box-shadow: 4px 4px 6px 2px rgba(0, 0, 0, 0.1);
-  }
-  
-  ion-fab-button {
-    --background: #3498db;
-    --background-activated: #2980b9;
-  }
-  
+  height: 100%;
+  background: black;
+  color: white;
+}
+
+.title {
+  text-align: center;
+  padding: 20px;
+  font-size: 2rem;
+  color: rgb(203, 203, 203);
+}
+
+ion-searchbar {
+  --background: rgba(255,255,255,0.2);
+  --border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+ion-list {
+  background: transparent;
+}
+
+ion-item {
+  --background: rgba(255,255,255,0.2);
+  --border-color: transparent;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  color: rgb(230, 230, 230);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-icon {
+  font-size: 40px;
+  color: rgb(203, 203, 203);
+}
+
+ion-item-option {
+  border-radius: 10px;
+}
+
+ion-fab-button {
+  --background: #3498db;
+  --background-activated: #2980b9;
+}
+
+
+
